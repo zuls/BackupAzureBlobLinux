@@ -2,9 +2,9 @@
 # fecha has a formated date
 
 #blob storage variables
-storageAccountName="gbbackup101"
-storageAccountKey="U/2reY/R+p7T/Af1f9+TlvKal6agh66bItY9nsXSi/ilu32TRgx2B5XB6b6+826RC7UEISIl8sVHnk3F9CDIBQ=="
-storageContainer="gbcore"
+storageAccountName="accountname"
+storageAccountKey="U/2reY/R+p7T/"
+storageContainer="containerr_name"
 
 
 fecha=`date +"%d-%m-%Y"`
