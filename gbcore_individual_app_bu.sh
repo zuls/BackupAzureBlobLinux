@@ -2,9 +2,9 @@
 # fecha has a formated date
 
 #blob storage variables
-storageAccountName="gbbackup101"
-storageAccountKey="U/2reY/R+p7T/Af1f9+TlvKal6agh66bItY9nsXSi/ilu32TRgx2B5XB6b6+826RC7UEISIl8sVHnk3F9CDIBQ=="
-storageContainer="gbcore"
+storageAccountName="storage_account"
+storageAccountKey="U/2reY/R+p7T/"
+storageContainer="storage_container"
 
 fecha=`date +"%d-%m-%Y"`
 
@@ -12,7 +12,7 @@ fecha=`date +"%d-%m-%Y"`
 apps_location="/opt/glassfish4/glassfish/domains/domain1/applications"
 
 #Backup location
-backup_location="/mnt/resource/gbcore_backup/apps"
+backup_location="/mnt/resource/apps_backup/apps"
 
 #Backup file name 
 backupfile="$backup_location/All-application-$fecha.tar.bz2"
@@ -21,15 +21,13 @@ backupfile="$backup_location/All-application-$fecha.tar.bz2"
 email_msg="/home/auto_backup/email_text_apps"
 
 #Server name
-server="gbuilder.com"
+server="myswerver.com"
 
 #email receipients
-#EMAILS="zularbine@arditesbd.com,harri@groupbuilder.fi,marko@groupbuilder.fi"
 EMAILS="zularbine@arditesbd.com,zularbine@gmail.com"
 
 #All application name
-#APPSNAME=( "alvsby" "eke" "estonia" "estonia2" "gb" "gbnc" "lapti" "lki" "middle-east" "na" "nccespoo" "nccrussia" "nccwoima" "oulu" "pohjola" "poland" "sonell" "srv" "t2h" "talo" "yit" "yit2" )
-APPSNAME=( "na" "eke" )
+APPSNAME=( "app1" "app2" "app3" "app4" "app5" )
 
 # Backup and gzip the directory in VM
 for i in "${APPSNAME[@]}"
@@ -46,10 +44,10 @@ done
 
 if [ $? -eq 0 ]; then
    echo "Application folder backup is taken at : $(date). \nBackup files are located in: $backup_location\n\n\nHave a good day!\nroot, $server" > $email_msg
-#   mail -s "(gbuilder.com)- GBCore Application folder backup on $fecha is Successful! " $EMAILS < $email_msg
+#   mail -s "($server)- Application folder backup on $fecha is Successful! " $EMAILS < $email_msg
 else
    echo "Application folder backup is FAILED at : $(date). \nPlease fix it. \n\n\nHave a good day!\nroot, $server" > $email_msg
-#   mail -s "(gbuilder.com)- GBCore Application folder backup on $fecha is FAILED! " $EMAILS < $email_msg
+#   mail -s "($server)- GBCore Application folder backup on $fecha is FAILED! " $EMAILS < $email_msg
 fi
 
 # Rotate the backups, delete older than Five days
